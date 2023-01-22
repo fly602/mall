@@ -146,7 +146,7 @@ services:
     restart: always
 
   userrpc:
-    build: ./user/rpc
+    build: ./service/user/rpc
     container_name: "userrpc"
     hostname: "userrpc"
     volumes:
@@ -160,7 +160,7 @@ services:
     restart: always
 
   userapi:
-    build: ./user/api
+    build: ./service/user/api
     container_name: "userapi"
     hostname: "userapi"
     volumes:
@@ -176,7 +176,7 @@ services:
     restart: always
 
   productrpc:
-    build: ./product/rpc
+    build: ./service/product/rpc
     container_name: "productrpc"
     hostname: "productrpc"
     volumes:
@@ -190,7 +190,7 @@ services:
     restart: always
 
   productapi:
-    build: ./product/api
+    build: ./service/product/api
     container_name: "productapi"
     hostname: "productapi"
     volumes:
@@ -206,7 +206,7 @@ services:
     restart: always
     
   orderrpc:
-    build: ./order/rpc
+    build: ./service/order/rpc
     container_name: "orderrpc"
     hostname: "orderrpc"
     stdin_open: true                     # 打开标准输入，可以接受外部输入
@@ -222,7 +222,7 @@ services:
     restart: always
 
   orderapi:
-    build: ./order/api
+    build: ./service/order/api
     container_name: "orderapi"
     hostname: "orderapi"
     environment:
@@ -238,7 +238,7 @@ services:
     restart: always
 
   payrpc:
-    build: ./pay/rpc
+    build: ./service/pay/rpc
     container_name: "payrpc"
     hostname: "payrpc"
     stdin_open: true                     # 打开标准输入，可以接受外部输入
@@ -254,7 +254,7 @@ services:
     restart: always
 
   payapi:
-    build: ./pay/api
+    build: ./service/pay/api
     container_name: "payapi"
     hostname: "payapi"
     volumes:
