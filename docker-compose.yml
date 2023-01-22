@@ -125,6 +125,7 @@ services:
       - ./service/product/model/product.sql:/docker-entrypoint-initdb.d/product.sql
       - ./service/order/model/order.sql:/docker-entrypoint-initdb.d/order.sql
       - ./service/pay/model/pay.sql:/docker-entrypoint-initdb.d/pay.sql
+      - ./dtm/dtm_barrier.sql:/docker-entrypoint-initdb.d/dtm_barrier.sql
     networks:
       - backend
     restart: always
