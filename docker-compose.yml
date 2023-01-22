@@ -16,7 +16,7 @@ services:
       - TZ=${TZ}
       - LANG=C.UTF-8
     volumes:
-      - /home/uos/dde-go/src:/usr/src
+      - /home/uos/dde-go/src:/usr/src:rw
     stdin_open: true                     # 打开标准输入，可以接受外部输入
     tty: true
     working_dir: /usr/src/mall
@@ -95,7 +95,7 @@ services:
     container_name: etcd_web
     hostname: "etcd_web"
     volumes:
-      - /home/uos/dde-go/src:/usr/src
+      - /home/uos/dde-go/src:/usr/src:rw
     networks:
       - backend
     depends_on:
@@ -119,8 +119,8 @@ services:
       - TZ=${TZ}
       - MYSQL_ROOT_PASSWORD=123456
     volumes:
-      - ./mysql/conf:/etc/mysql/conf.d
-      - ./mysql/data:/var/lib/mysql
+      - ./mysql/conf:/etc/mysql/conf.d:rw
+      - ./mysql/data:/var/lib/mysql:rw
       - ./service/user/model/user.sql:/docker-entrypoint-initdb.d/user.sql
       - ./service/product/model/product.sql:/docker-entrypoint-initdb.d/product.sql
       - ./service/order/model/order.sql:/docker-entrypoint-initdb.d/order.sql
@@ -138,8 +138,8 @@ services:
     ports:
       - "56379:6379"
     volumes:
-      - ./redis/data:/data
-      - ./redis:/etc/redis
+      - ./redis/data:/data:rw
+      - ./redis:/etc/redis:rw
     command: /bin/bash -c "redis-server /etc/redis/redis.conf"
     networks:
       - backend
@@ -150,7 +150,7 @@ services:
     container_name: "userrpc"
     hostname: "userrpc"
     volumes:
-      - /home/uos/dde-go/src:/usr/src
+      - /home/uos/dde-go/src:/usr/src:rw
     environment:
       - TZ=${TZ}
     ports:
@@ -164,7 +164,7 @@ services:
     container_name: "userapi"
     hostname: "userapi"
     volumes:
-      - /home/uos/dde-go/src:/usr/src
+      - /home/uos/dde-go/src:/usr/src:rw
     environment:
       - TZ=${TZ}    
     depends_on:
@@ -180,7 +180,7 @@ services:
     container_name: "productrpc"
     hostname: "productrpc"
     volumes:
-      - /home/uos/dde-go/src:/usr/src
+      - /home/uos/dde-go/src:/usr/src:rw
     environment:
       - TZ=${TZ}    
     ports:
@@ -194,7 +194,7 @@ services:
     container_name: "productapi"
     hostname: "productapi"
     volumes:
-      - /home/uos/dde-go/src:/usr/src
+      - /home/uos/dde-go/src:/usr/src:rw
     environment:
       - TZ=${TZ}    
     depends_on:
@@ -214,7 +214,7 @@ services:
     environment:
       - TZ=${TZ}    
     volumes:
-      - /home/uos/dde-go/src:/usr/src
+      - /home/uos/dde-go/src:/usr/src:rw
     ports:
       - "9002:9002"
     networks:
@@ -230,7 +230,7 @@ services:
     depends_on:
       - "orderrpc"
     volumes:
-      - /home/uos/dde-go/src:/usr/src
+      - /home/uos/dde-go/src:/usr/src:rw
     ports:
       - "8002:8002"
     networks:
@@ -244,7 +244,7 @@ services:
     stdin_open: true                     # 打开标准输入，可以接受外部输入
     tty: true
     volumes:
-      - /home/uos/dde-go/src:/usr/src
+      - /home/uos/dde-go/src:/usr/src:rw
     environment:
       - TZ=${TZ}    
     ports:
@@ -258,7 +258,7 @@ services:
     container_name: "payapi"
     hostname: "payapi"
     volumes:
-      - /home/uos/dde-go/src:/usr/src
+      - /home/uos/dde-go/src:/usr/src:rw
     environment:
       - TZ=${TZ}    
     depends_on:
@@ -277,7 +277,7 @@ services:
       - TZ=${TZ}
     privileged: true
     volumes:
-      - ./prometheus/prometheus.yml:/opt/bitnami/prometheus/conf/prometheus.yml  # 将 prometheus 配置文件挂载到容器里
+      - ./prometheus/prometheus.yml:/opt/bitnami/prometheus/conf/prometheus.yml:rw  # 将 prometheus 配置文件挂载到容器里
     ports:
       - "${PROMETHEUS_PORT}:9090"                     # 设置容器9090端口映射指定宿主机端口，用于宿主机访问可视化web
     networks:
@@ -316,7 +316,7 @@ services:
       - "-c=/app/dtm/configs/config.yaml"
     privileged: true
     volumes:
-      - ./dtm/config.yml:/app/dtm/configs/config.yaml # 将 dtm 配置文件挂载到容器里
+      - ./dtm/config.yml:/app/dtm/configs/config.yaml:rw # 将 dtm 配置文件挂载到容器里
     ports:
       - "${DTM_HTTP_PORT}:36789"
       - "${DTM_GRPC_PORT}:36790"
@@ -335,8 +335,8 @@ services:
     networks:
       - backend
     volumes:
-      - ./zookeeper/zk1/data:/data
-      - ./zookeeper/zk1/datalog:/datalog
+      - ./zookeeper/zk1/data:/data:rw
+      - ./zookeeper/zk1/datalog:/datalog:rw
     environment:
       - TZ=${TZ}
       - ZOO_MY_ID=1
@@ -353,8 +353,8 @@ services:
     networks:
       - backend
     volumes:
-      - ./zookeeper/zk2/data:/data
-      - ./zookeeper/zk2/datalog:/datalog
+      - ./zookeeper/zk2/data:/data:rw
+      - ./zookeeper/zk2/datalog:/datalog:rw
     environment:
       - TZ=${TZ}
       - ZOO_MY_ID=2
@@ -371,8 +371,8 @@ services:
     networks:
       - backend
     volumes:
-      - ./zookeeper/zk3/data:/data
-      - ./zookeeper/zk3/datalog:/datalog
+      - ./zookeeper/zk3/data:/data:rw
+      - ./zookeeper/zk3/datalog:/datalog:rw
     environment:
       - TZ=${TZ}
       - ZOO_MY_ID=3
@@ -401,7 +401,7 @@ services:
       - KAFKA_LISTENERS=PLAINTEXT://0.0.0.0:9092
       - KAFKA_ADVERTISED_LISTENERS=PLAINTEXT://${KAFKA_ADVERTISED_LISTENERS_IP}:9192
     volumes:
-      - ./kafka/broker1/kafka:/bitnami/kafka
+      - ./kafka/broker1/kafka:/bitnami/kafka:rw
       - /var/run/docker.sock:/var/run/docker.sock
     restart: always
 
@@ -426,7 +426,7 @@ services:
       - KAFKA_ADVERTISED_LISTENERS=PLAINTEXT://${KAFKA_ADVERTISED_LISTENERS_IP}:9292
       - TZ=${TZ}
     volumes:
-      - ./kafka/broker2/kafka:/bitnami/kafka
+      - ./kafka/broker2/kafka:/bitnami/kafka:rw
       - /var/run/docker.sock:/var/run/docker.sock
     restart: always
 
@@ -451,7 +451,7 @@ services:
       - KAFKA_ADVERTISED_LISTENERS=PLAINTEXT://${KAFKA_ADVERTISED_LISTENERS_IP}:9392
       - TZ=${TZ}
     volumes:
-      - ./kafka/broker3/kafka:/bitnami/kafka
+      - ./kafka/broker3/kafka:/bitnami/kafka:rw
       - /var/run/docker.sock:/var/run/docker.sock
     restart: always
 
@@ -486,8 +486,8 @@ services:
     environment:
       - TZ=${TZ}
     volumes:
-      - ./filebeat/filebeat.yml:/usr/share/filebeat/filebeat.yml
-      - /var/lib/docker/containers:/var/lib/docker/containers
+      - ./filebeat/filebeat.yml:/usr/share/filebeat/filebeat.yml:rw
+      - /var/lib/docker/containers:/var/lib/docker/containers:rw
     networks:
       - backend
     depends_on:
@@ -505,8 +505,8 @@ services:
       - "ES_JAVA_OPTS=-Xms512m -Xmx512m" #设置使用jvm内存大小
       - TZ=${TZ}
     volumes:
-      - ./elasticsearch/plugins:/usr/share/elasticsearch/plugins #插件文件挂载
-      - ./elasticsearch/data:/usr/share/elasticsearch/data #数据文件挂载
+      - ./elasticsearch/plugins:/usr/share/elasticsearch/plugins:rw #插件文件挂载
+      - ./elasticsearch/data:/usr/share/elasticsearch/data:rw #数据文件挂载
     ports:
       - 49200:9200
       - 49300:9300
@@ -537,7 +537,7 @@ services:
     container_name: go-stash
     hostname: go-stash
     volumes:
-      - ./go-stash/config.yaml:/app/etc/config.yaml
+      - ./go-stash/config.yaml:/app/etc/config.yaml:rw
     environment:
       - TZ=${TZ}
     networks:
