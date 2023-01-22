@@ -2,7 +2,7 @@
 
 ## 下载
 ```
-git clone git@github.com:fly602/mall.git
+git clone https://github.com/fly602/mall.git
 ```
 
 ## 编译
