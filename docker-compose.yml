@@ -383,6 +383,7 @@ services:
   broker1:
     build: ./kafka
     container_name: broker1
+    privileged: true
     user: root
     ports:
       - "9192:9092"
@@ -408,6 +409,7 @@ services:
   broker2:
     build: ./kafka
     container_name: broker2
+    privileged: true
     user: root
     ports:
       - "9292:9092"
@@ -433,6 +435,7 @@ services:
   broker3:
     build: ./kafka
     container_name: broker3
+    privileged: true
     user: root
     ports:
       - "9392:9092"
@@ -482,6 +485,7 @@ services:
     build: ./filebeat
     container_name: filebeat
     hostname: filebeat
+    privileged: true
     user: root
     environment:
       - TZ=${TZ}
@@ -498,11 +502,11 @@ services:
     build: ./elasticsearch
     container_name: elasticsearch
     hostname: elasticsearch
-    user: root
     environment:
       - "cluster.name=elasticsearch" #设置集群名称为elasticsearch
       - "discovery.type=single-node" #以单一节点模式启动
       - "ES_JAVA_OPTS=-Xms512m -Xmx512m" #设置使用jvm内存大小
+      - TAKE_FILE_OWNERSHIP=true
       - TZ=${TZ}
     volumes:
       - ./elasticsearch/plugins:/usr/share/elasticsearch/plugins:rw #插件文件挂载
