@@ -9,4 +9,6 @@ git clone git@github.com:fly602/mall.git
 ```
 cd service
 go mod init
+cd ..
+make all
 ```
