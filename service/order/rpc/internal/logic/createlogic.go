@@ -4,6 +4,7 @@ import (
 	"context"
 	"database/sql"
 	"fmt"
+	"time"
 
 	"mall/service/order/model"
 	"mall/service/order/rpc/internal/svc"
@@ -56,13 +57,23 @@ func (l *CreateLogic) Create(in *order.CreateRequest) (*order.CreateResponse, er
 			Uid:    in.Uid,
 			Pid:    in.Pid,
 			Amount: in.Amount,
-			Status: 0,
+			Status: model.ORDER_STATU_PAYING,
 		}
 		// 创建订单
-		_, err = l.svcCtx.OrderModel.TxInsert(l.ctx, tx, &newOrder)
+		res, err := l.svcCtx.OrderModel.TxInsert(l.ctx, tx, &newOrder)
 		if err != nil {
 			return fmt.Errorf("订单创建失败")
 		}
+
+		id, err := res.LastInsertId()
+		if err != nil {
+			return status.Error(500, err.Error())
+		}
+		// TODO: 添加超时任务，支付超时改变状态
+		l.svcCtx.Timingwheel.AfterFunc(time.Duration(model.ORDER_EXPIRE_MAX)*time.Second, func() {
+			expl := NewExpireLogic(context.TODO(), l.svcCtx)
+			expl.Expire(id)
+		})
 		return nil
 
 	}); err != nil {

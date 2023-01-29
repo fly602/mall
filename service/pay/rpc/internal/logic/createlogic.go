@@ -38,12 +38,23 @@ func (l *CreateLogic) Create(in *pay.CreateRequest) (*pay.CreateResponse, error)
 	}
 
 	// 查询订单是否存在
-	_, err = l.svcCtx.OrderRpc.Detail(l.ctx, &order.DetailRequest{
+	resOrder, err := l.svcCtx.OrderRpc.Detail(l.ctx, &order.DetailRequest{
 		Id: in.Oid,
 	})
 	if err != nil {
 		return nil, err
 	}
+
+	// 校验订单是否处于待支付状态
+	if resOrder.Status != model.ORDER_STATU_PAYING {
+		return nil, status.Error(100, "订单状态异常，取消支付")
+	}
+
+	// 校验支付金额是否正确
+	if resOrder.Amount != in.Amount {
+		return nil, status.Error(100, "金额不正确")
+	}
+
 	// 查询订单是否已经创建支付
 	_, err = l.svcCtx.PayModel.FindOneByOid(l.ctx, in.Oid)
 	if err == nil {
@@ -62,6 +73,14 @@ func (l *CreateLogic) Create(in *pay.CreateRequest) (*pay.CreateResponse, error)
 		return nil, status.Error(500, err.Error())
 	}
 	newPay.Id, err = res.LastInsertId()
+	if err != nil {
+		return nil, status.Error(500, err.Error())
+	}
+
+	// 更新订单支付状态
+	_, err = l.svcCtx.OrderRpc.Paid(l.ctx, &order.PaidRequest{
+		Id: in.Oid,
+	})
 	if err != nil {
 		return nil, status.Error(500, err.Error())
 	}

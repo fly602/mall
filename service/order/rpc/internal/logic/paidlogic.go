@@ -33,10 +33,11 @@ func (l *PaidLogic) Paid(in *order.PaidRequest) (*order.PaidResponse, error) {
 			return nil, status.Error(100, "订单不存在")
 		}
 	}
-	res.Status = 1
+	res.Status = model.ORDER_STATU_PAYED
 	err = l.svcCtx.OrderModel.Update(l.ctx, res)
 	if err != nil {
 		return nil, status.Error(500, err.Error())
 	}
+	l.Debug("订单支付成功, 订单信息: %+v", res)
 	return &order.PaidResponse{}, nil
 }

@@ -5,6 +5,7 @@ import (
 	"database/sql"
 	"fmt"
 
+	"mall/service/order/model"
 	"mall/service/order/rpc/internal/svc"
 	"mall/service/order/rpc/types/order"
 	"mall/service/user/rpc/types/user"
@@ -59,7 +60,7 @@ func (l *CreateRevertLogic) CreateRevert(in *order.CreateRequest) (*order.Create
 			return fmt.Errorf("订单不存在")
 		}
 		// 修改订单状态9，标识订单已失效，并更新订单
-		resOrder.Status = 9
+		resOrder.Status = model.ORDER_STATU_FAILED
 		err = l.svcCtx.OrderModel.TxUpdate(l.ctx, tx, resOrder)
 		if err != nil {
 			return fmt.Errorf("订单更新失败")

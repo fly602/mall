@@ -63,13 +63,5 @@ func (l *CallbackLogic) Callback(in *pay.CallbackRequest) (*pay.CallbackResponse
 		return nil, status.Error(500, err.Error())
 	}
 
-	// 更新订单支付状态
-	_, err = l.svcCtx.OrderRpc.Paid(l.ctx, &order.PaidRequest{
-		Id: in.Oid,
-	})
-	if err != nil {
-		return nil, status.Error(500, err.Error())
-	}
-
 	return &pay.CallbackResponse{}, nil
 }
