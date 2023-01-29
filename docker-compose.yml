@@ -3,6 +3,7 @@ version: '3.5'
 networks:
   backend:
     driver: ${NETWORKS_DRIVER}
+
 # golang 静态编译
 # CGO_ENABLED=0 go build -a -ldflags '-extldflags "-static"'
 services:
@@ -16,10 +17,10 @@ services:
       - TZ=${TZ}
       - LANG=C.UTF-8
     volumes:
-      - /home/uos/dde-go/src:/usr/src:rw
+      - ${LOCAL_SRC_DIR}:${DOCKER_SRC_DIR}:${VOLUME_MODE}
     stdin_open: true                     # 打开标准输入，可以接受外部输入
     tty: true
-    working_dir: /usr/src/mall
+    working_dir: ${DOCKER_SRC_DIR}/${PROJECT_NAME}
     networks:
       - backend
     restart: always
@@ -94,8 +95,6 @@ services:
     image: evildecay/etcdkeeper
     container_name: etcd_web
     hostname: "etcd_web"
-    volumes:
-      - /home/uos/dde-go/src:/usr/src:rw
     networks:
       - backend
     depends_on:
@@ -106,7 +105,7 @@ services:
       - TZ=${TZ}
       - HOST=etcd_web
     ports:
-      - "8091:8080"
+      - "${ETCD_WEB_PORT}:8080"
     restart: always
 
   db:
@@ -114,10 +113,10 @@ services:
     hostname: "mysql"
     container_name: "mysql"
     ports:
-      - "53306:3306"
+      - "${MYSQL_PORT}:3306"
     environment:
       - TZ=${TZ}
-      - MYSQL_ROOT_PASSWORD=123456
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
     volumes:
       - ./mysql/conf:/etc/mysql/conf.d:rw
       - ./mysql/data:/var/lib/mysql:rw
@@ -137,7 +136,7 @@ services:
     environment:
       - TZ=${TZ}   
     ports:
-      - "56379:6379"
+      - "${REDIS_PORT}:6379"
     volumes:
       - ./redis/data:/data:rw
       - ./redis:/etc/redis:rw
@@ -151,7 +150,7 @@ services:
     container_name: "userrpc"
     hostname: "userrpc"
     volumes:
-      - /home/uos/dde-go/src:/usr/src:rw
+      - ${LOCAL_SRC_DIR}:${DOCKER_SRC_DIR}:${VOLUME_MODE}
     environment:
       - TZ=${TZ}
     ports:
@@ -165,7 +164,7 @@ services:
     container_name: "userapi"
     hostname: "userapi"
     volumes:
-      - /home/uos/dde-go/src:/usr/src:rw
+      - ${LOCAL_SRC_DIR}:${DOCKER_SRC_DIR}:${VOLUME_MODE}
     environment:
       - TZ=${TZ}    
     depends_on:
@@ -181,7 +180,7 @@ services:
     container_name: "productrpc"
     hostname: "productrpc"
     volumes:
-      - /home/uos/dde-go/src:/usr/src:rw
+      - ${LOCAL_SRC_DIR}:${DOCKER_SRC_DIR}:${VOLUME_MODE}
     environment:
       - TZ=${TZ}    
     ports:
@@ -195,7 +194,7 @@ services:
     container_name: "productapi"
     hostname: "productapi"
     volumes:
-      - /home/uos/dde-go/src:/usr/src:rw
+      - ${LOCAL_SRC_DIR}:${DOCKER_SRC_DIR}:${VOLUME_MODE}
     environment:
       - TZ=${TZ}    
     depends_on:
@@ -215,7 +214,7 @@ services:
     environment:
       - TZ=${TZ}    
     volumes:
-      - /home/uos/dde-go/src:/usr/src:rw
+      - ${LOCAL_SRC_DIR}:${DOCKER_SRC_DIR}:${VOLUME_MODE}
     ports:
       - "9002:9002"
     networks:
@@ -231,7 +230,7 @@ services:
     depends_on:
       - "orderrpc"
     volumes:
-      - /home/uos/dde-go/src:/usr/src:rw
+      - ${LOCAL_SRC_DIR}:${DOCKER_SRC_DIR}:${VOLUME_MODE}
     ports:
       - "8002:8002"
     networks:
@@ -245,7 +244,7 @@ services:
     stdin_open: true                     # 打开标准输入，可以接受外部输入
     tty: true
     volumes:
-      - /home/uos/dde-go/src:/usr/src:rw
+      - ${LOCAL_SRC_DIR}:${DOCKER_SRC_DIR}:${VOLUME_MODE}
     environment:
       - TZ=${TZ}    
     ports:
@@ -259,7 +258,7 @@ services:
     container_name: "payapi"
     hostname: "payapi"
     volumes:
-      - /home/uos/dde-go/src:/usr/src:rw
+      - ${LOCAL_SRC_DIR}:${DOCKER_SRC_DIR}:${VOLUME_MODE}
     environment:
       - TZ=${TZ}    
     depends_on:
