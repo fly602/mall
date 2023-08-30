@@ -3,8 +3,8 @@ UID=$(shell id -u)
 # 设置golang 容器环境变量
 GO_DOCKER_TZ=Asia/Shanghai
 GO_DOCKER_LANG=C.UTF-8
-GO_DOCKER_IMAGE=go1.18 
-GO_DOCKER_NAME=go-build1.18
+GO_DOCKER_IMAGE=go1.17
+GO_DOCKER_NAME=go-build1.17
 GO_DOCKER_VOLUME_PATH=/usr/src
 GO_DOCKER_SRC_PATH=mall
 GO_LOCAL_VOLUME_PATH=$(HOME)/dde-go/src
@@ -21,7 +21,8 @@ SUB_DIRS = user/api \
 
 SUB_DIR_CLEAN := $(SUB_DIRS:%=%_clean)
 
-# 使用docker go1.18环境进行编译
+# 本地编译环境go1.17安装：https://github.com/fly602/resource/blob/master/golang/golang-1.17-x86.zip
+# 使用docker go1.17环境进行编译
 target:
 	@docker build -t ${GO_DOCKER_IMAGE} -f ../golang/Dockerfile ../golang
 	@docker run --rm -it -u $(UID) \
@@ -36,7 +37,7 @@ all: target run
 build: gopreapre ${SUB_DIRS}
 
 gopreapre:
-	@go mod tidy -go=1.16 && go mod tidy -go=1.17
+	@go mod tidy
 	@go mod vendor
 
 ${SUB_DIRS}:ECHO
@@ -52,8 +53,8 @@ ${SUB_DIR_CLEAN}:
 	@+make clean -C ${@:%_clean=%}
 
 help:
-	@echo "make 使用go1.18docker环境编译微服务"
-	@echo "make build 编译微服务,需要环境go.18"
+	@echo "make 使用go1.17docker环境编译微服务"
+	@echo "make build 编译微服务,需要环境go.17"
 	@echo "make clean 删除中间目标文件"
 	@echo "make all 编译并在容器中运行微服务"
 

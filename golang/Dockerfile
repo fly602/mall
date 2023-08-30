@@ -1,4 +1,4 @@
-FROM golang:1.18
+FROM golang:1.17
 
 LABEL maintainer="fuleyi <fuleyi@outlook.com>"
 
@@ -28,8 +28,9 @@ ENV GOPROXY=https://goproxy.cn/,direct \
 
 USER normal
 # 安装vscode的go插件/protoc-gen-go/protoc-gen-go-grpc/goctl
-RUN export GOPROXY=https://goproxy.cn/,direct && export GO111MODULE="on" \
-    go get -v golang.org/x/tools/gopls@v0.9.5 && \
+RUN export GOPROXY=https://goproxy.cn/,direct && \ 
+    export GO111MODULE="on" && \
+    go get -v golang.org/x/tools/gopls@v0.11.0 && \
     go get -v github.com/go-delve/delve/cmd/dlv@v1.7.0 && \
     go get -v github.com/mdempsky/gocode && \
     go get -v golang.org/x/tools/cmd/goimports && \
