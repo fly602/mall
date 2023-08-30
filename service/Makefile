@@ -36,7 +36,7 @@ all: target run
 build: gopreapre ${SUB_DIRS}
 
 gopreapre:
-	@go mod tidy
+	@go mod tidy -go=1.16 && go mod tidy -go=1.17
 	@go mod vendor
 
 ${SUB_DIRS}:ECHO

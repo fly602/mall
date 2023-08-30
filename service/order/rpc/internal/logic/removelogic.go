@@ -3,9 +3,9 @@ package logic
 import (
 	"context"
 
-	"mall/service/order/model"
-	"mall/service/order/rpc/internal/svc"
-	"mall/service/order/rpc/types/order"
+	"github.com/fly602/mall/service/order/model"
+	"github.com/fly602/mall/service/order/rpc/internal/svc"
+	"github.com/fly602/mall/service/order/rpc/types/order"
 
 	"github.com/zeromicro/go-zero/core/logx"
 	"google.golang.org/grpc/status"

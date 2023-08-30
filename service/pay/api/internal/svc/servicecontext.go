@@ -1,9 +1,9 @@
 package svc
 
 import (
-	jwtx "mall/service/common/jwt"
-	"mall/service/pay/api/internal/config"
-	"mall/service/pay/rpc/payclient"
+	jwtx "github.com/fly602/mall/service/common/jwt"
+	"github.com/fly602/mall/service/pay/api/internal/config"
+	"github.com/fly602/mall/service/pay/rpc/payclient"
 
 	"github.com/zeromicro/go-zero/rest"
 

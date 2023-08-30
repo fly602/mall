@@ -3,9 +3,9 @@ package logic
 import (
 	"context"
 
-	"mall/service/pay/model"
-	"mall/service/pay/rpc/internal/svc"
-	"mall/service/pay/rpc/types/pay"
+	"github.com/fly602/mall/service/pay/model"
+	"github.com/fly602/mall/service/pay/rpc/internal/svc"
+	"github.com/fly602/mall/service/pay/rpc/types/pay"
 
 	"github.com/zeromicro/go-zero/core/logx"
 	"google.golang.org/grpc/status"

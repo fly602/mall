@@ -1,10 +1,10 @@
 package svc
 
 import (
-	jwtx "mall/service/common/jwt"
-	"mall/service/order/api/internal/config"
-	"mall/service/order/rpc/orderclient"
-	"mall/service/product/rpc/productclient"
+	jwtx "github.com/fly602/mall/service/common/jwt"
+	"github.com/fly602/mall/service/order/api/internal/config"
+	"github.com/fly602/mall/service/order/rpc/orderclient"
+	"github.com/fly602/mall/service/product/rpc/productclient"
 
 	"github.com/zeromicro/go-zero/rest"
 

@@ -3,9 +3,9 @@ package handler
 import (
 	"net/http"
 
-	"mall/service/order/api/internal/logic"
-	"mall/service/order/api/internal/svc"
-	"mall/service/order/api/internal/types"
+	"github.com/fly602/mall/service/order/api/internal/logic"
+	"github.com/fly602/mall/service/order/api/internal/svc"
+	"github.com/fly602/mall/service/order/api/internal/types"
 
 	"github.com/zeromicro/go-zero/rest/httpx"
 )

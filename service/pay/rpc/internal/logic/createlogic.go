@@ -3,11 +3,11 @@ package logic
 import (
 	"context"
 
-	"mall/service/order/rpc/types/order"
-	"mall/service/pay/model"
-	"mall/service/pay/rpc/internal/svc"
-	"mall/service/pay/rpc/types/pay"
-	"mall/service/user/rpc/types/user"
+	"github.com/fly602/mall/service/order/rpc/types/order"
+	"github.com/fly602/mall/service/pay/model"
+	"github.com/fly602/mall/service/pay/rpc/internal/svc"
+	"github.com/fly602/mall/service/pay/rpc/types/pay"
+	"github.com/fly602/mall/service/user/rpc/types/user"
 
 	"google.golang.org/grpc/status"
 

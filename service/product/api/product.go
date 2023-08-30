@@ -5,9 +5,9 @@ import (
 	"fmt"
 	"net/http"
 
-	"mall/service/product/api/internal/config"
-	"mall/service/product/api/internal/handler"
-	"mall/service/product/api/internal/svc"
+	"github.com/fly602/mall/service/product/api/internal/config"
+	"github.com/fly602/mall/service/product/api/internal/handler"
+	"github.com/fly602/mall/service/product/api/internal/svc"
 
 	"github.com/zeromicro/go-zero/core/conf"
 	"github.com/zeromicro/go-zero/rest"

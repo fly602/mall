@@ -6,7 +6,7 @@ package payclient
 import (
 	"context"
 
-	"mall/service/pay/rpc/types/pay"
+	"github.com/fly602/mall/service/pay/rpc/types/pay"
 
 	"github.com/zeromicro/go-zero/zrpc"
 	"google.golang.org/grpc"

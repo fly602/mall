@@ -4,9 +4,9 @@ import (
 	"flag"
 	"fmt"
 
-	"mall/service/pay/api/internal/config"
-	"mall/service/pay/api/internal/handler"
-	"mall/service/pay/api/internal/svc"
+	"github.com/fly602/mall/service/pay/api/internal/config"
+	"github.com/fly602/mall/service/pay/api/internal/handler"
+	"github.com/fly602/mall/service/pay/api/internal/svc"
 
 	"github.com/zeromicro/go-zero/core/conf"
 	"github.com/zeromicro/go-zero/rest"

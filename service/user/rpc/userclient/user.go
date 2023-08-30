@@ -6,7 +6,7 @@ package userclient
 import (
 	"context"
 
-	"mall/service/user/rpc/types/user"
+	"github.com/fly602/mall/service/user/rpc/types/user"
 
 	"github.com/zeromicro/go-zero/zrpc"
 	"google.golang.org/grpc"

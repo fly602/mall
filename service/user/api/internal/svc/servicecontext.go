@@ -1,9 +1,9 @@
 package svc
 
 import (
-	jwtx "mall/service/common/jwt"
-	"mall/service/user/api/internal/config"
-	user "mall/service/user/rpc/userclient"
+	jwtx "github.com/fly602/mall/service/common/jwt"
+	"github.com/fly602/mall/service/user/api/internal/config"
+	user "github.com/fly602/mall/service/user/rpc/userclient"
 
 	"github.com/zeromicro/go-zero/rest"
 	"github.com/zeromicro/go-zero/zrpc"

@@ -6,7 +6,7 @@ package productclient
 import (
 	"context"
 
-	"mall/service/product/rpc/types/product"
+	"github.com/fly602/mall/service/product/rpc/types/product"
 
 	"github.com/zeromicro/go-zero/zrpc"
 	"google.golang.org/grpc"

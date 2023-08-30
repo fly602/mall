@@ -6,10 +6,10 @@ import (
 	"fmt"
 	"time"
 
-	"mall/service/order/model"
-	"mall/service/order/rpc/internal/svc"
-	"mall/service/order/rpc/types/order"
-	"mall/service/user/rpc/types/user"
+	"github.com/fly602/mall/service/order/model"
+	"github.com/fly602/mall/service/order/rpc/internal/svc"
+	"github.com/fly602/mall/service/order/rpc/types/order"
+	"github.com/fly602/mall/service/user/rpc/types/user"
 
 	"github.com/dtm-labs/client/dtmgrpc"
 

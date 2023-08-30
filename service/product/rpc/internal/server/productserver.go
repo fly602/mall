@@ -6,9 +6,9 @@ package server
 import (
 	"context"
 
-	"mall/service/product/rpc/internal/logic"
-	"mall/service/product/rpc/internal/svc"
-	"mall/service/product/rpc/types/product"
+	"github.com/fly602/mall/service/product/rpc/internal/logic"
+	"github.com/fly602/mall/service/product/rpc/internal/svc"
+	"github.com/fly602/mall/service/product/rpc/types/product"
 )
 
 type ProductServer struct {

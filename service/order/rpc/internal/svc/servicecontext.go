@@ -1,11 +1,12 @@
 package svc
 
 import (
-	"mall/service/order/model"
-	"mall/service/order/rpc/internal/config"
-	"mall/service/product/rpc/productclient"
-	"mall/service/user/rpc/userclient"
 	"time"
+
+	"github.com/fly602/mall/service/order/model"
+	"github.com/fly602/mall/service/order/rpc/internal/config"
+	"github.com/fly602/mall/service/product/rpc/productclient"
+	"github.com/fly602/mall/service/user/rpc/userclient"
 
 	"github.com/RussellLuo/timingwheel"
 	"github.com/zeromicro/go-zero/core/stores/sqlx"

@@ -4,8 +4,8 @@ import (
 	"context"
 	"database/sql"
 
-	"mall/service/product/rpc/internal/svc"
-	"mall/service/product/rpc/types/product"
+	"github.com/fly602/mall/service/product/rpc/internal/svc"
+	"github.com/fly602/mall/service/product/rpc/types/product"
 
 	"github.com/dtm-labs/client/dtmcli"
 	"google.golang.org/grpc/codes"

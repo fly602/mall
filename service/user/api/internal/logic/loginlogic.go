@@ -2,11 +2,12 @@ package logic
 
 import (
 	"context"
-	jwtx "mall/service/common/jwt"
-	"mall/service/user/api/internal/svc"
-	"mall/service/user/api/internal/types"
-	"mall/service/user/rpc/types/user"
 	"time"
+
+	jwtx "github.com/fly602/mall/service/common/jwt"
+	"github.com/fly602/mall/service/user/api/internal/svc"
+	"github.com/fly602/mall/service/user/api/internal/types"
+	"github.com/fly602/mall/service/user/rpc/types/user"
 
 	"github.com/zeromicro/go-zero/core/logx"
 )

@@ -4,9 +4,9 @@ import (
 	"flag"
 	"fmt"
 
-	"mall/service/order/api/internal/config"
-	"mall/service/order/api/internal/handler"
-	"mall/service/order/api/internal/svc"
+	"github.com/fly602/mall/service/order/api/internal/config"
+	"github.com/fly602/mall/service/order/api/internal/handler"
+	"github.com/fly602/mall/service/order/api/internal/svc"
 
 	_ "github.com/dtm-labs/driver-gozero" // 添加导入 `gozero` 的 `dtm` 驱动
 	"github.com/zeromicro/go-zero/core/conf"

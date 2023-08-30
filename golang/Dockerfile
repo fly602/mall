@@ -34,7 +34,7 @@ RUN export GOPROXY=https://goproxy.cn/,direct && \
     go install github.com/josharian/impl@latest && \
     go install github.com/haya14busa/goplay/cmd/goplay@latest && \
     go install github.com/go-delve/delve/cmd/dlv@latest && \
-    go install honnef.co/go/tools/cmd/staticcheck@latest && \
+    go install honnef.co/go/tools/cmd/staticcheck@v0.3.3 && \
     go install golang.org/x/tools/gopls@latest && \
     go install google.golang.org/protobuf/cmd/protoc-gen-go@latest &&\
     go install google.golang.org/grpc/cmd/protoc-gen-go-grpc@latest &&\

@@ -6,9 +6,9 @@ package server
 import (
 	"context"
 
-	"mall/service/pay/rpc/internal/logic"
-	"mall/service/pay/rpc/internal/svc"
-	"mall/service/pay/rpc/types/pay"
+	"github.com/fly602/mall/service/pay/rpc/internal/logic"
+	"github.com/fly602/mall/service/pay/rpc/internal/svc"
+	"github.com/fly602/mall/service/pay/rpc/types/pay"
 )
 
 type PayServer struct {

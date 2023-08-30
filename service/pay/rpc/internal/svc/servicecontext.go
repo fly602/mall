@@ -1,10 +1,10 @@
 package svc
 
 import (
-	"mall/service/order/rpc/orderclient"
-	"mall/service/pay/model"
-	"mall/service/pay/rpc/internal/config"
-	"mall/service/user/rpc/userclient"
+	"github.com/fly602/mall/service/order/rpc/orderclient"
+	"github.com/fly602/mall/service/pay/model"
+	"github.com/fly602/mall/service/pay/rpc/internal/config"
+	"github.com/fly602/mall/service/user/rpc/userclient"
 
 	"github.com/zeromicro/go-zero/zrpc"
 

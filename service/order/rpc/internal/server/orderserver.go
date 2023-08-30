@@ -6,9 +6,9 @@ package server
 import (
 	"context"
 
-	"mall/service/order/rpc/internal/logic"
-	"mall/service/order/rpc/internal/svc"
-	"mall/service/order/rpc/types/order"
+	"github.com/fly602/mall/service/order/rpc/internal/logic"
+	"github.com/fly602/mall/service/order/rpc/internal/svc"
+	"github.com/fly602/mall/service/order/rpc/types/order"
 )
 
 type OrderServer struct {

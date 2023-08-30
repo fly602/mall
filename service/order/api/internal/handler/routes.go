@@ -4,7 +4,7 @@ package handler
 import (
 	"net/http"
 
-	"mall/service/order/api/internal/svc"
+	"github.com/fly602/mall/service/order/api/internal/svc"
 
 	"github.com/zeromicro/go-zero/rest"
 )

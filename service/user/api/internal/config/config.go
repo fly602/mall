@@ -1,7 +1,7 @@
 package config
 
 import (
-	jwtx "mall/service/common/jwt"
+	jwtx "github.com/fly602/mall/service/common/jwt"
 
 	"github.com/zeromicro/go-zero/rest"
 	"github.com/zeromicro/go-zero/zrpc"
