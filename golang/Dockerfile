@@ -28,17 +28,20 @@ ENV GOPROXY=https://goproxy.cn/,direct \
 
 USER normal
 # 安装vscode的go插件/protoc-gen-go/protoc-gen-go-grpc/goctl
-RUN export GOPROXY=https://goproxy.cn/,direct && \
-    go install github.com/cweill/gotests/gotests@latest && \
-    go install github.com/fatih/gomodifytags@latest && \
-    go install github.com/josharian/impl@latest && \
-    go install github.com/haya14busa/goplay/cmd/goplay@latest && \
-    go install github.com/go-delve/delve/cmd/dlv@latest && \
-    go install honnef.co/go/tools/cmd/staticcheck@v0.3.3 && \
-    go install golang.org/x/tools/gopls@latest && \
-    go install google.golang.org/protobuf/cmd/protoc-gen-go@latest &&\
-    go install google.golang.org/grpc/cmd/protoc-gen-go-grpc@latest &&\
-    go install github.com/zeromicro/go-zero/tools/goctl@latest
+RUN export GOPROXY=https://goproxy.cn/,direct && export GO111MODULE="on" \
+    go get -v golang.org/x/tools/gopls@v0.9.5 && \
+    go get -v github.com/go-delve/delve/cmd/dlv@v1.7.0 && \
+    go get -v github.com/mdempsky/gocode && \
+    go get -v golang.org/x/tools/cmd/goimports && \
+    go get -v github.com/rogpeppe/godef && \
+    go get -v github.com/cweill/gotests/gotests@v1.6.0 && \
+    go get -v github.com/fatih/gomodifytags@v1.16.0 && \
+    go get -v github.com/josharian/impl@v1.1.0 && \
+    go get -v github.com/haya14busa/goplay/cmd/goplay@v1.0.0 && \
+    go get -v honnef.co/go/tools/cmd/staticcheck@v0.3.3 && \
+    go get -v google.golang.org/protobuf/cmd/protoc-gen-go@v1.31.0 &&\
+    go get -v google.golang.org/grpc/cmd/protoc-gen-go-grpc@v1.3.0 &&\
+    go get -v github.com/zeromicro/go-zero/tools/goctl@v1.4.5
 
 USER root
 # 安装 protoc
