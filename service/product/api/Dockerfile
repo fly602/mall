@@ -1,4 +1,4 @@
-FROM go1.18
+FROM go1.17
 
 WORKDIR /opt/mall/product/api
 
